@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CycleSnapshot {
+  id                       String   @id @default(cuid())
+  cycleId                  Int      @unique
+  kinsDistributedLastCycle Decimal  @db.Decimal(18, 4)
+  recipients               Int
+  averagePayout            Decimal  @db.Decimal(18, 4)
+  totalDistributed         Decimal  @db.Decimal(22, 4)
+  treasuryBalance          Decimal  @db.Decimal(22, 4)
+  createdAt                DateTime @default(now())
+}
+
+model Payout {
+  id        String        @id @default(cuid())
+  wallet    String
+  kins      Decimal       @db.Decimal(18, 4)
+  cycleId   Int
+  createdAt DateTime      @default(now())
+
+  @@index([cycleId])
+  @@index([wallet])
+}
+
+model HolderSnapshot {
+  id        String   @id @default(cuid())
+  rank      Int
+  wallet    String
+  balance   Decimal  @db.Decimal(22, 4)
+  share     Decimal  @db.Decimal(8, 4)
+  createdAt DateTime @default(now())
+
+  @@index([rank])
+  @@index([wallet])
+}
