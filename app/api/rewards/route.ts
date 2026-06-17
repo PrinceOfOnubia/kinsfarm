@@ -12,14 +12,14 @@ export async function GET() {
       prisma.cycleSnapshot.findFirst({
         orderBy: { cycleId: "desc" },
       }),
-      prisma.holderSnapshot.findMany({ orderBy: { rank: "asc" }, take: 10 }),
+      prisma.holderSnapshot.findMany({ orderBy: { rank: "asc" }, take: 50 }),
     ]);
 
     if (!cycle) {
       return NextResponse.json({ snapshot: initialSnapshot, source: "empty_database" });
     }
 
-    const payouts = await prisma.payout.findMany({ orderBy: [{ cycleId: "desc" }, { createdAt: "desc" }], take: 8 });
+    const payouts = await prisma.payout.findMany({ orderBy: [{ cycleId: "desc" }, { createdAt: "desc" }], take: 30 });
 
     return NextResponse.json({
       source: "database",

@@ -28,9 +28,9 @@ body {
   margin: 0;
   color: #f7f1d0;
   background:
-    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(180deg, #0b2436 0%, #07121a 52%, #050a0f 100%);
+    linear-gradient(180deg, rgba(5, 35, 61, 0.12) 0%, rgba(5, 35, 61, 0.28) 38%, rgba(5, 19, 32, 0.92) 100%),
+    url("/images/kinsmen-map-background.jpg") center top / cover fixed,
+    #096eb4;
   font-family: var(--font-body);
   overflow-x: hidden;
 }
@@ -59,7 +59,7 @@ input {
   color: white;
   font-family: Georgia, "Times New Roman", serif;
   letter-spacing: 0;
-  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.6), 0 0 18px rgba(94, 208, 82, 0.28);
+  text-shadow: 0 4px 0 rgba(54, 56, 65, 0.42), 0 12px 22px rgba(23, 75, 125, 0.3);
 }
 
 .pixel-screen {
@@ -71,9 +71,10 @@ input {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 18% 16%, rgba(54, 174, 242, 0.18), transparent 24rem),
-    radial-gradient(circle at 82% 10%, rgba(255, 196, 91, 0.12), transparent 19rem),
-    radial-gradient(circle at 72% 88%, rgba(94, 208, 82, 0.13), transparent 24rem);
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 32px 32px,
+    radial-gradient(circle at 18% 16%, rgba(54, 174, 242, 0.22), transparent 24rem),
+    radial-gradient(circle at 82% 10%, rgba(255, 196, 91, 0.16), transparent 19rem);
   content: "";
 }
 
@@ -96,16 +97,16 @@ input {
 
 .hud-window {
   position: relative;
-  border: 2px solid #3b6c5d;
+  border: 2px solid rgba(255, 255, 255, 0.38);
   background:
-    linear-gradient(180deg, rgba(23, 62, 87, 0.96), rgba(8, 22, 31, 0.98)),
+    linear-gradient(180deg, rgba(18, 63, 104, 0.9), rgba(11, 33, 51, 0.96)),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 8px, transparent 8px 16px);
   box-shadow:
-    inset 0 0 0 2px rgba(255, 196, 91, 0.14),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.16),
     inset 0 -8px 0 rgba(0,0,0,0.18),
-    0 5px 0 #041018,
-    0 0 0 1px rgba(255,255,255,0.08),
-    0 18px 40px rgba(0,0,0,0.34);
+    0 5px 0 rgba(16, 61, 93, 0.42),
+    0 0 0 1px rgba(255,255,255,0.16),
+    0 18px 50px rgba(10,66,112,0.28);
 }
 
 .hud-window::before,
@@ -147,10 +148,17 @@ input {
 }
 
 .pixel-button-green {
-  border-color: #9df08f;
-  background: linear-gradient(180deg, #5ed052 0%, #26933a 100%);
-  color: #07121a;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.22), 0 5px 0 #145922;
+  border-color: #fff3b8;
+  background: linear-gradient(180deg, #5ed052 0%, #ffc45b 100%);
+  color: #12320f;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.22), 0 5px 0 #8f4316;
+}
+
+.pixel-button-secondary {
+  border-color: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.12), 0 5px 0 rgba(16, 61, 93, 0.5);
 }
 
 .pixel-stat {
@@ -172,8 +180,8 @@ input {
 }
 
 .pixel-block.is-filled {
-  background: #5ed052;
-  box-shadow: 0 0 10px rgba(94, 208, 82, 0.48);
+  background: #ffc45b;
+  box-shadow: 0 0 10px rgba(255, 196, 91, 0.5);
 }
 
 .coin {
@@ -186,7 +194,7 @@ input {
 
 .sparkline {
   image-rendering: pixelated;
-  filter: drop-shadow(0 0 6px rgba(94, 208, 82, 0.45));
+  filter: drop-shadow(0 0 6px rgba(255, 196, 91, 0.45));
 }
 
 .inventory-row {
@@ -197,8 +205,59 @@ input {
 
 .inventory-row:hover {
   background: rgba(54, 174, 242, 0.15);
-  box-shadow: inset 0 0 0 1px rgba(255, 196, 91, 0.42), 0 0 16px rgba(94, 208, 82, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 196, 91, 0.42), 0 0 16px rgba(255, 196, 91, 0.2);
   transform: translateX(2px);
+}
+
+.kins-header {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(18, 63, 104, 0.58);
+  box-shadow: 0 18px 50px rgba(10, 66, 112, 0.22);
+  backdrop-filter: blur(18px);
+}
+
+.community-hero {
+  background:
+    linear-gradient(90deg, rgba(5, 35, 61, 0.82) 0%, rgba(5, 35, 61, 0.48) 52%, rgba(5, 35, 61, 0.18) 100%),
+    url("/images/kinsmen-map-background.jpg") center / cover;
+}
+
+.community-hero::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(5, 19, 32, 0.7));
+  content: "";
+}
+
+* {
+  scrollbar-color: #ffc45b rgba(5, 16, 24, 0.45);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 16, 24, 0.45);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(5, 16, 24, 0.7);
+  background: #ffc45b;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: rgba(18, 63, 104, 0.98) !important;
+  border: 2px solid rgba(255, 196, 91, 0.72) !important;
+  border-radius: 0 !important;
+}
+
+.wallet-adapter-modal-title,
+.wallet-adapter-modal-list .wallet-adapter-button {
+  font-family: var(--font-pixel) !important;
 }
 
 @media (max-width: 640px) {

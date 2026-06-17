@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { CopyContract } from "@/components/CopyContract";
 import { Panel } from "@/components/Panel";
-import { PixelButton } from "@/components/PixelButton";
 import { PixelProgress } from "@/components/PixelProgress";
 import { Sparkline } from "@/components/Sparkline";
 import { StatCard } from "@/components/StatCard";
+import { WalletConnect } from "@/components/WalletConnect";
+import { XIcon } from "@/components/XIcon";
 import {
   advanceSnapshot,
   type CycleSnapshot,
@@ -18,7 +21,6 @@ import {
 } from "@/lib/mockRewards";
 
 const playerBalance = 250_000;
-const walletAddress = "7xQhJ2p9z3Fabb";
 const sparklinePoints = [22, 26, 25, 31, 29, 36, 33, 39, 48, 46, 52, 56, 66, 64, 71, 69, 78, 96];
 
 export default function DashboardPage() {
@@ -27,7 +29,6 @@ export default function DashboardPage() {
   const [loadingSnapshot, setLoadingSnapshot] = useState(true);
   const [snapshotError, setSnapshotError] = useState("");
   const [secondsLeft, setSecondsLeft] = useState(272);
-  const [connected, setConnected] = useState(false);
   const [pulse, setPulse] = useState(false);
 
   useEffect(() => {
@@ -91,8 +92,8 @@ export default function DashboardPage() {
   return (
     <main className="pixel-screen min-h-screen px-3 py-4 sm:px-5 lg:px-6">
       <div className="mx-auto flex max-w-[1500px] flex-col gap-4">
-        <header className="hud-window pixel-corners flex flex-col gap-4 p-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex min-w-0 items-center gap-3">
+        <header className="kins-header pixel-corners flex flex-col gap-4 p-4 xl:flex-row xl:items-center xl:justify-between">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <div className="grid h-14 w-14 shrink-0 place-items-center border-2 border-gold bg-black/25 shadow-rune">
               <div className="coin grid h-9 w-9 place-items-center pixel-font text-sm">$</div>
             </div>
@@ -100,17 +101,17 @@ export default function DashboardPage() {
               <h1 className="pixel-title truncate text-3xl font-black sm:text-4xl">$KINSFARM</h1>
               <p className="pixel-label text-skyGame">Hold - Earn KINS</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="flex flex-wrap items-center justify-start gap-3 lg:justify-center">
-            <div className="pixel-corners border border-grass/40 bg-black/30 px-4 py-3">
-              <p className="pixel-label text-grass"><span className="mr-2 inline-block h-3 w-3 bg-grass shadow-[0_0_12px_#5ed052]" />SYSTEM ACTIVE</p>
+          <div className="flex flex-wrap items-center justify-start gap-3 xl:justify-center">
+            <div className="pixel-corners border border-gold/45 bg-white/15 px-4 py-3">
+              <p className="pixel-label text-gold"><span className="mr-2 inline-block h-3 w-3 bg-gold shadow-[0_0_12px_#ffc45b]" />SYSTEM ACTIVE</p>
             </div>
             <div className={`pixel-corners border border-gold/40 bg-black/30 px-4 py-3 ${pulse ? "shadow-rune" : ""}`}>
               <p className="pixel-label text-white/70">Cycle closes in <span className="text-gold">{formatTimer(secondsLeft)}</span></p>
             </div>
-            <div className="pixel-corners border border-skyGame/30 bg-black/30 px-4 py-3">
-              <p className="pixel-label text-white/45">{loadingSnapshot ? "Loading realm data" : `Data: ${dataSource}`}</p>
+            <div className="pixel-corners border border-skyGame/30 bg-[#123f68]/55 px-4 py-3">
+              <p className="pixel-label text-white/65">{loadingSnapshot ? "Loading realm data" : `Data: ${dataSource}`}</p>
             </div>
             {snapshotError ? (
               <div className="pixel-corners border border-orangeCta/40 bg-orangeCta/10 px-4 py-3">
@@ -119,16 +120,18 @@ export default function DashboardPage() {
             ) : null}
           </div>
 
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center lg:justify-end">
-            {connected ? (
-              <div className="pixel-corners border border-skyGame/40 bg-black/30 px-4 py-3">
-                <p className="pixel-label text-white/60">Wallet</p>
-                <p className="pixel-font text-skyGame">{truncateWallet(walletAddress)}</p>
-              </div>
-            ) : null}
-            <PixelButton variant="green" onClick={() => setConnected((value) => !value)}>
-              {connected ? "Disconnect" : "Connect Wallet"}
-            </PixelButton>
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-center xl:justify-end">
+            <CopyContract compact />
+            <a
+              href="https://x.com/kinsmenonsol"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="$KINSFARM on X"
+              className="pixel-corners grid h-11 w-full place-items-center border border-white/35 bg-white/15 text-white transition hover:bg-gold hover:text-[#52320b] lg:w-11"
+            >
+              <XIcon />
+            </a>
+            <WalletConnect />
           </div>
         </header>
 
@@ -177,13 +180,13 @@ export default function DashboardPage() {
                 <div className="flex items-start gap-3">
                   <div className="coin grid h-12 w-12 shrink-0 place-items-center pixel-font">K</div>
                   <div className="min-w-0">
-                    <p className={`pixel-font break-words text-2xl leading-tight text-grass min-[1400px]:text-4xl ${pulse ? "scale-[1.02]" : ""} transition`}>
+                    <p className={`pixel-font whitespace-nowrap text-[clamp(1.2rem,5.8vw,2.35rem)] leading-tight text-gold ${pulse ? "scale-[1.02]" : ""} transition`}>
                       {formatNumber(snapshot.totalDistributed, 4)}
                     </p>
                     <p className="pixel-label text-white/55">All time distributed to holders</p>
                   </div>
                 </div>
-                <div className="mt-4 border border-grass/20 bg-black/25 p-2">
+                <div className="mt-4 border border-gold/20 bg-black/25 p-2">
                   <Sparkline points={sparklinePoints.map((point, index) => point + (pulse && index > 14 ? 8 : 0))} />
                 </div>
               </Panel>
@@ -248,7 +251,7 @@ export default function DashboardPage() {
                 <span>Cycle ID</span>
                 <span>Time</span>
               </div>
-              <div className="mt-2 space-y-2">
+              <div className="mt-2 max-h-[22rem] space-y-2 overflow-y-auto pr-1">
                 {snapshot.payouts.map((row) => (
                   <div key={`${row.cycleId}-${row.wallet}-${row.kins}`} className="inventory-row pixel-corners grid gap-2 p-3 text-sm sm:grid-cols-[1.2fr_1fr_0.8fr_0.9fr]">
                     <span className="pixel-font text-skyGame">{truncateWallet(row.wallet)}</span>
@@ -264,9 +267,9 @@ export default function DashboardPage() {
           <aside className="hud-window pixel-corners h-fit p-4 xl:sticky xl:top-4">
             <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="pixel-label text-gold">Top Holders</h2>
-              <span className="pixel-corners border border-gold/30 bg-black/25 px-2 py-1 pixel-label text-white/45">1-10</span>
+              <span className="pixel-corners border border-gold/30 bg-black/25 px-2 py-1 pixel-label text-white/45">Scroll</span>
             </div>
-            <div className="space-y-2">
+            <div className="max-h-[42rem] space-y-2 overflow-y-auto pr-1">
               {snapshot.holders.map((holder) => (
                 <div key={holder.wallet} className="inventory-row pixel-corners grid grid-cols-[2.2rem_1fr] gap-2 p-3">
                   <span className="pixel-font text-gold">{holder.rank <= 3 ? "♛" : `#${holder.rank}`}</span>

@@ -15,10 +15,10 @@ export function Sparkline({ points }: SparklineProps) {
 
   return (
     <svg className="sparkline h-24 w-full" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Pixel reward sparkline">
-      <polyline points={coords.join(" ")} fill="none" stroke="#5ed052" strokeWidth="5" strokeLinecap="square" strokeLinejoin="miter" />
+      <polyline points={coords.join(" ")} fill="none" stroke="#ffc45b" strokeWidth="5" strokeLinecap="square" strokeLinejoin="miter" />
       {coords.map((coord, index) => {
         const [x, y] = coord.split(",").map(Number);
-        return <rect key={index} x={x - 3} y={y - 3} width="6" height="6" fill="#ffc45b" />;
+        return <rect key={index} x={x - 3} y={y - 3} width="6" height="6" fill="#36aef2" />;
       })}
     </svg>
   );

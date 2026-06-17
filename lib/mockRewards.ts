@@ -34,6 +34,20 @@ const wallets = [
   "Am9xPq441Xpz",
   "K1n5Farm8aQw",
   "D7uPayout3Mz",
+  "Bt6Realm44Eko",
+  "Cp9Guild72Qor",
+  "Qn4Season9Tav",
+  "M8xHolder1Vae",
+  "4FarmRune8Lq",
+  "Tavern6B1nkS",
+  "J9KintaraMx7",
+  "PayoutSage11",
+  "8ClanVaultQa",
+  "3QuestBoardLp",
+  "RwdEngine66",
+  "Y7FarmhandZp",
+  "NobleKin45S",
+  "L2TreasuryVx",
 ];
 
 export const cycleDurationSeconds = 600;
@@ -47,8 +61,14 @@ export const initialSnapshot: CycleSnapshot = {
   totalDistributed: 66285714.2235,
   treasuryBalance: 1245732.89,
   holders: wallets.map((wallet, index) => {
-    const balances = [5250000, 4120000, 3750000, 3250000, 2980000, 2420000, 2145000, 1820000, 1555000, 1315000];
-    const shares = [8.52, 6.69, 6.09, 5.27, 4.83, 3.93, 3.48, 2.95, 2.52, 2.13];
+    const balances = [
+      5250000, 4120000, 3750000, 3250000, 2980000, 2420000, 2145000, 1820000, 1555000, 1315000, 1180000, 1095000,
+      980000, 875000, 821000, 760000, 702500, 665000, 608000, 552500, 501000, 455000, 392000, 318000,
+    ];
+    const shares = [
+      8.52, 6.69, 6.09, 5.27, 4.83, 3.93, 3.48, 2.95, 2.52, 2.13, 1.91, 1.78, 1.59, 1.42, 1.33, 1.23, 1.14, 1.08,
+      0.99, 0.9, 0.81, 0.74, 0.64, 0.52,
+    ];
     return {
       rank: index + 1,
       wallet,
@@ -56,11 +76,11 @@ export const initialSnapshot: CycleSnapshot = {
       share: shares[index],
     };
   }),
-  payouts: wallets.slice(0, 6).map((wallet, index) => ({
-    wallet,
-    kins: [125.34, 98.75, 156.22, 73.11, 188.9, 111.42][index],
+  payouts: Array.from({ length: 24 }).map((_, index) => ({
+    wallet: wallets[index % wallets.length],
+    kins: [125.34, 98.75, 156.22, 73.11, 188.9, 111.42, 142.77, 86.31, 205.12, 64.45, 134.88, 99.02][index % 12],
     cycleId: 18432 - index,
-    time: ["11:20 AM", "11:10 AM", "11:00 AM", "10:50 AM", "10:40 AM", "10:30 AM"][index],
+    time: ["11:20 AM", "11:10 AM", "11:00 AM", "10:50 AM", "10:40 AM", "10:30 AM", "10:20 AM", "10:10 AM"][index % 8],
   })),
 };
 
@@ -105,6 +125,6 @@ export function advanceSnapshot(snapshot: CycleSnapshot, now = new Date()): Cycl
         time: now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       },
       ...snapshot.payouts,
-    ].slice(0, 8),
+    ].slice(0, 30),
   };
 }
