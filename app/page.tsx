@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CopyContract } from "@/components/CopyContract";
+import { MobileMenu } from "@/components/MobileMenu";
 import { PixelButton } from "@/components/PixelButton";
 import { WalletConnect } from "@/components/WalletConnect";
 import { XIcon } from "@/components/XIcon";
@@ -23,7 +24,7 @@ export default function Home() {
             </div>
           </Link>
           <div className="flex flex-wrap items-center gap-2">
-            <Link href="/dashboard" className="pixel-corners border border-white/35 bg-white/15 px-3 py-2 pixel-label text-white transition hover:bg-gold hover:text-[#52320b]">
+            <Link href="/dashboard" className="hidden pixel-corners border border-white/35 bg-white/15 px-3 py-2 pixel-label text-white transition hover:bg-gold hover:text-[#52320b] md:inline-flex">
               Dashboard
             </Link>
             <a
@@ -31,13 +32,14 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="$KINSFARM on X"
-              className="grid h-11 w-11 place-items-center rounded-2xl border border-white/35 bg-white/15 text-white transition hover:bg-gold hover:text-[#52320b]"
+              className="hidden h-11 w-11 place-items-center rounded-2xl border border-white/35 bg-white/15 text-white transition hover:bg-gold hover:text-[#52320b] md:grid"
             >
               <XIcon />
             </a>
             <div className="hidden sm:block">
               <WalletConnect />
             </div>
+            <MobileMenu />
           </div>
         </header>
 

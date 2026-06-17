@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { CopyContract } from "@/components/CopyContract";
+import { MobileMenu } from "@/components/MobileMenu";
 import { Panel } from "@/components/Panel";
 import { PixelProgress } from "@/components/PixelProgress";
 import { Sparkline } from "@/components/Sparkline";
@@ -103,7 +104,7 @@ export default function DashboardPage() {
             </div>
           </Link>
 
-          <div className="flex flex-wrap items-center justify-start gap-3 xl:justify-center">
+          <div className="hidden flex-wrap items-center justify-start gap-3 md:flex xl:justify-center">
             <div className="pixel-corners border border-gold/45 bg-white/15 px-4 py-3">
               <p className="pixel-label text-gold"><span className="mr-2 inline-block h-3 w-3 bg-gold shadow-[0_0_12px_#ffc45b]" />SYSTEM ACTIVE</p>
             </div>
@@ -120,7 +121,11 @@ export default function DashboardPage() {
             ) : null}
           </div>
 
-          <div className="flex flex-col gap-2 lg:flex-row lg:items-center xl:justify-end">
+          <div className="flex items-center justify-end gap-2">
+            <MobileMenu />
+          </div>
+
+          <div className="hidden flex-col gap-2 md:flex lg:flex-row lg:items-center xl:justify-end">
             <CopyContract compact />
             <a
               href="https://x.com/kinsmenonsol"
@@ -180,7 +185,7 @@ export default function DashboardPage() {
                 <div className="flex items-start gap-3">
                   <div className="coin grid h-12 w-12 shrink-0 place-items-center pixel-font">K</div>
                   <div className="min-w-0">
-                    <p className={`pixel-font whitespace-nowrap text-[clamp(1.2rem,5.8vw,2.35rem)] leading-tight text-gold ${pulse ? "scale-[1.02]" : ""} transition`}>
+                    <p className={`pixel-font max-w-full overflow-hidden whitespace-nowrap text-[clamp(0.9rem,3.4vw,1.55rem)] leading-tight text-gold ${pulse ? "scale-[1.01]" : ""} transition`}>
                       {formatNumber(snapshot.totalDistributed, 4)}
                     </p>
                     <p className="pixel-label text-white/55">All time distributed to holders</p>
