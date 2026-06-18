@@ -93,7 +93,7 @@ export default function DashboardPage() {
   return (
     <main className="pixel-screen min-h-screen px-3 py-4 sm:px-5 lg:px-6">
       <div className="mx-auto flex max-w-[1500px] flex-col gap-4">
-        <header className="kins-header pixel-corners flex flex-col gap-4 p-4 xl:flex-row xl:items-center xl:justify-between">
+        <header className="kins-header pixel-corners flex flex-row items-center justify-between gap-3 p-3 md:flex-col md:items-stretch md:gap-4 md:p-4 xl:flex-row xl:items-center">
           <Link href="/" className="flex min-w-0 items-center gap-3">
             <div className="grid h-14 w-14 shrink-0 place-items-center border-2 border-gold bg-black/25 shadow-rune">
               <div className="coin grid h-9 w-9 place-items-center pixel-font text-sm">$</div>
@@ -121,7 +121,7 @@ export default function DashboardPage() {
             ) : null}
           </div>
 
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex shrink-0 items-center justify-end gap-2 md:hidden">
             <MobileMenu />
           </div>
 
@@ -184,8 +184,8 @@ export default function DashboardPage() {
               <Panel title="Total KINS Distributed" icon="◎">
                 <div className="flex items-start gap-3">
                   <div className="coin grid h-12 w-12 shrink-0 place-items-center pixel-font">K</div>
-                  <div className="min-w-0">
-                    <p className={`pixel-font max-w-full overflow-hidden whitespace-nowrap text-[clamp(0.9rem,3.4vw,1.55rem)] leading-tight text-gold ${pulse ? "scale-[1.01]" : ""} transition`}>
+                  <div className="min-w-0 flex-1">
+                    <p className={`pixel-font block max-w-full overflow-hidden whitespace-nowrap text-[clamp(0.78rem,2.4vw,1.28rem)] leading-tight text-gold ${pulse ? "scale-[1.005]" : ""} transition`}>
                       {formatNumber(snapshot.totalDistributed, 4)}
                     </p>
                     <p className="pixel-label text-white/55">All time distributed to holders</p>

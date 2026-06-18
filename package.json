@@ -41,6 +41,6 @@
     "postcss": "8.5.10"
   },
   "optionalDependencies": {
-    "utf-8-validate": "^6.0.6"
+    "utf-8-validate": "^5.0.10"
   }
 }

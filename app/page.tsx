@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="pixel-screen min-h-screen px-3 py-4 sm:px-5 lg:px-6">
       <div className="mx-auto flex max-w-[1500px] flex-col gap-5">
-        <header className="kins-header pixel-corners flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:justify-between">
+        <header className="kins-header pixel-corners flex flex-row items-center justify-between gap-3 p-3">
           <Link href="/" className="flex min-w-0 items-center gap-3">
             <span className="coin grid h-12 w-12 shrink-0 place-items-center pixel-font">$</span>
             <div className="min-w-0">
@@ -23,7 +23,7 @@ export default function Home() {
               <p className="pixel-label text-white/85">Hold - Earn KINS</p>
             </div>
           </Link>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <Link href="/dashboard" className="hidden pixel-corners border border-white/35 bg-white/15 px-3 py-2 pixel-label text-white transition hover:bg-gold hover:text-[#52320b] md:inline-flex">
               Dashboard
             </Link>
@@ -36,7 +36,7 @@ export default function Home() {
             >
               <XIcon />
             </a>
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <WalletConnect />
             </div>
             <MobileMenu />
