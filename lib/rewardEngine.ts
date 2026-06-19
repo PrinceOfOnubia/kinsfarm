@@ -32,26 +32,26 @@ const wallets = [
   "2rNvP6x9sFae",
   "Hc42Rfq3Kins",
   "Am9xPq441Xpz",
-  "K1n5Farm8aQw",
+  "K1n5Club8aQw",
   "D7uPayout3Mz",
   "Bt6Realm44Eko",
   "Cp9Guild72Qor",
   "Qn4Season9Tav",
   "M8xHolder1Vae",
-  "4FarmRune8Lq",
+  "4ClubRune8Lq",
   "Tavern6B1nkS",
   "J9KintaraMx7",
   "PayoutSage11",
   "8ClanVaultQa",
   "3QuestBoardLp",
   "RwdEngine66",
-  "Y7FarmhandZp",
+  "Y7ClubhandZp",
   "NobleKin45S",
   "L2TreasuryVx",
 ];
 
 export const cycleDurationSeconds = 600;
-export const minimumRequirement = 100_000;
+export const minimumRequirement = 500_000;
 
 export const initialSnapshot: CycleSnapshot = {
   cycleId: 18432,

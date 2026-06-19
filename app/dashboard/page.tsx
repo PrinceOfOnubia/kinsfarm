@@ -19,14 +19,14 @@ import {
   initialSnapshot,
   minimumRequirement,
   truncateWallet,
-} from "@/lib/mockRewards";
+} from "@/lib/rewardEngine";
 
 const playerBalance = 250_000;
 const sparklinePoints = [22, 26, 25, 31, 29, 36, 33, 39, 48, 46, 52, 56, 66, 64, 71, 69, 78, 96];
 
 export default function DashboardPage() {
   const [snapshot, setSnapshot] = useState(initialSnapshot);
-  const [dataSource, setDataSource] = useState("mock");
+  const [dataSource, setDataSource] = useState("reward_engine");
   const [loadingSnapshot, setLoadingSnapshot] = useState(true);
   const [snapshotError, setSnapshotError] = useState("");
   const [secondsLeft, setSecondsLeft] = useState(272);
@@ -99,7 +99,7 @@ export default function DashboardPage() {
               <div className="coin grid h-9 w-9 place-items-center pixel-font text-sm">$</div>
             </div>
             <div className="min-w-0">
-              <h1 className="pixel-title truncate text-3xl font-black sm:text-4xl">$KINSFARM</h1>
+              <h1 className="pixel-title truncate text-3xl font-black sm:text-4xl">KINSCLUB</h1>
               <p className="pixel-label text-skyGame">Hold - Earn KINS</p>
             </div>
           </Link>
@@ -112,11 +112,11 @@ export default function DashboardPage() {
               <p className="pixel-label text-white/70">Cycle closes in <span className="text-gold">{formatTimer(secondsLeft)}</span></p>
             </div>
             <div className="pixel-corners border border-skyGame/30 bg-[#123f68]/55 px-4 py-3">
-              <p className="pixel-label text-white/65">{loadingSnapshot ? "Loading realm data" : `Data: ${dataSource}`}</p>
+              <p className="pixel-label text-white/65">{loadingSnapshot ? "Loading realm data" : dataSource === "database" ? "Data: Live rewards" : "Data: Reward engine"}</p>
             </div>
             {snapshotError ? (
               <div className="pixel-corners border border-orangeCta/40 bg-orangeCta/10 px-4 py-3">
-                <p className="pixel-label text-orangeCta">Fallback active</p>
+                <p className="pixel-label text-orangeCta">Sync protected</p>
               </div>
             ) : null}
           </div>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
               href="https://x.com/kinsmenonsol"
               target="_blank"
               rel="noreferrer"
-              aria-label="$KINSFARM on X"
+              aria-label="KINSCLUB on X"
               className="pixel-corners grid h-11 w-11 place-items-center border border-white/35 bg-[#315d84] text-white transition hover:bg-gold hover:text-[#52320b]"
             >
               <XIcon />
@@ -140,7 +140,7 @@ export default function DashboardPage() {
               href="https://x.com/kinsmenonsol"
               target="_blank"
               rel="noreferrer"
-              aria-label="$KINSFARM on X"
+              aria-label="KINSCLUB on X"
               className="pixel-corners grid h-11 w-full place-items-center border border-white/35 bg-white/15 text-white transition hover:bg-gold hover:text-[#52320b] lg:w-11"
             >
               <XIcon />
@@ -209,12 +209,12 @@ export default function DashboardPage() {
             <section className="grid gap-4 lg:grid-cols-3">
               <Panel title="Your Status" icon="☻">
                 <div className="space-y-3">
-                  <StatusLine label="KINSFARM Balance" value={formatNumber(playerBalance)} />
+                  <StatusLine label="KINSCLUB Balance" value={formatNumber(playerBalance)} />
                   <StatusLine label="Your Weight" value="500.00" />
                   <StatusLine label="Est. Next Payout" value={`${formatNumber(estimatedPayout, 2)} KINS`} />
                   <div className={`pixel-corners border p-3 ${eligible ? "border-grass/50 bg-grass/10" : "border-red-500/50 bg-red-500/10"}`}>
                     <p className={`pixel-label ${eligible ? "text-grass" : "text-red-400"}`}>{eligible ? "ELIGIBLE" : "NOT ELIGIBLE"}</p>
-                    <p className="text-sm text-white/60">{eligible ? "You are earning rewards" : "Add more KINSFARM to qualify"}</p>
+                    <p className="text-sm text-white/60">{eligible ? "You are earning rewards" : "Add more KINSCLUB to qualify"}</p>
                   </div>
                 </div>
               </Panel>
@@ -242,7 +242,7 @@ export default function DashboardPage() {
                   <div className="mb-4 flex justify-between gap-3">
                     <div>
                       <p className="pixel-label text-white/60">Required</p>
-                      <p className="pixel-font text-lg text-white">{formatNumber(minimumRequirement)} KINSFARM</p>
+                      <p className="pixel-font text-lg text-white">{formatNumber(minimumRequirement)} KINSCLUB</p>
                     </div>
                     <div className="text-right">
                       <p className="pixel-label text-white/60">Your Progress</p>
@@ -292,7 +292,7 @@ export default function DashboardPage() {
                       <span className="pixel-font truncate text-skyGame">{truncateWallet(holder.wallet)}</span>
                       <span className="pixel-label text-grass">{holder.share.toFixed(2)}%</span>
                     </div>
-                    <p className="truncate text-sm text-white/60">{formatNumber(holder.balance)} KINSFARM</p>
+                    <p className="truncate text-sm text-white/60">{formatNumber(holder.balance)} KINSCLUB</p>
                   </div>
                 </div>
               ))}

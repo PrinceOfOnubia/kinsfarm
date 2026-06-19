@@ -5,8 +5,8 @@ import { AppProviders } from "@/components/AppProviders";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "$KINSFARM Reward Engine",
-  description: "Pixel MMO reward dashboard for KINSFARM holders.",
+  title: "KINSCLUB Rewards",
+  description: "Community rewards platform for Kintara players and KINSCLUB holders.",
 };
 
 export default function RootLayout({

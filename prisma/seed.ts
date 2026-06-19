@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { initialSnapshot } from "../lib/mockRewards";
+import { initialSnapshot } from "../lib/rewardEngine";
 
 const prisma = new PrismaClient();
 

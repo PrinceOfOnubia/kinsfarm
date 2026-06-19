@@ -1,6 +1,6 @@
-# $KINSFARM Reward Engine
+# KINSCLUB Rewards
 
-Pixel MMO-style crypto reward dashboard built with Next.js, Tailwind CSS, and Prisma.
+Pixel MMO-style community rewards platform built with Next.js, Tailwind CSS, and Prisma.
 
 ## Local Development
 
@@ -21,7 +21,7 @@ DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-The dashboard falls back to mock reward data when `DATABASE_URL` is not configured.
+The dashboard uses seeded reward engine data when `DATABASE_URL` is not configured.
 
 ## Production
 

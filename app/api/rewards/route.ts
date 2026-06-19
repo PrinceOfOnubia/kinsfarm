@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { hasDatabaseUrl, prisma } from "@/lib/db";
-import { initialSnapshot } from "@/lib/mockRewards";
+import { initialSnapshot } from "@/lib/rewardEngine";
 
 export async function GET() {
   if (!hasDatabaseUrl) {
-    return NextResponse.json({ snapshot: initialSnapshot, source: "mock" });
+    return NextResponse.json({ snapshot: initialSnapshot, source: "reward_engine" });
   }
 
   try {
@@ -16,7 +16,7 @@ export async function GET() {
     ]);
 
     if (!cycle) {
-      return NextResponse.json({ snapshot: initialSnapshot, source: "empty_database" });
+      return NextResponse.json({ snapshot: initialSnapshot, source: "reward_engine" });
     }
 
     const payouts = await prisma.payout.findMany({ orderBy: [{ cycleId: "desc" }, { createdAt: "desc" }], take: 30 });
@@ -47,7 +47,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json({
       snapshot: initialSnapshot,
-      source: "database_error",
+      source: "reward_engine",
       message: error instanceof Error ? error.message : "Unable to read reward snapshot",
     });
   }

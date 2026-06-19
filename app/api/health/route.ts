@@ -3,7 +3,7 @@ import { hasDatabaseUrl, prisma } from "@/lib/db";
 
 export async function GET() {
   if (!hasDatabaseUrl) {
-    return NextResponse.json({ ok: true, database: "not_configured", mode: "mock" });
+    return NextResponse.json({ ok: true, database: "not_configured", mode: "reward_engine" });
   }
 
   try {

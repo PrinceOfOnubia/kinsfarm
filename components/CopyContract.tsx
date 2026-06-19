@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { PixelButton } from "@/components/PixelButton";
 
-const contractAddress = "CA: Coming soon";
+const contractAddress = "Official CA: Verify via KINSCLUB channels";
 
 export function CopyContract({ compact = false }: { compact?: boolean }) {
   const [copied, setCopied] = useState(false);
