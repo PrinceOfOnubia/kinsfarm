@@ -122,6 +122,15 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex shrink-0 items-center justify-end gap-2 md:hidden">
+            <a
+              href="https://x.com/kinsmenonsol"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="$KINSFARM on X"
+              className="pixel-corners grid h-11 w-11 place-items-center border border-white/35 bg-[#315d84] text-white transition hover:bg-gold hover:text-[#52320b]"
+            >
+              <XIcon />
+            </a>
             <MobileMenu />
           </div>
 

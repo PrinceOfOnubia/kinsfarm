@@ -5,7 +5,7 @@ import { XIcon } from "@/components/XIcon";
 export function SiteFooter() {
   return (
     <footer className="relative z-10 px-3 pb-4 sm:px-5 lg:px-6">
-      <div className="mx-auto flex max-w-[1500px] flex-col gap-3 rounded-[1rem] border border-white/35 bg-white/20 p-4 text-white shadow-panel backdrop-blur-xl md:flex-row md:items-center md:justify-between">
+      <div className="site-footer-panel mx-auto flex max-w-[1500px] flex-col gap-3 rounded-[1rem] p-4 text-white md:flex-row md:items-center md:justify-between">
         <Link href="/" className="inline-flex min-w-0 items-center gap-3">
           <span className="coin grid h-9 w-9 place-items-center pixel-font text-sm">$</span>
           <span className="pixel-title text-xl font-black">$KINSFARM</span>

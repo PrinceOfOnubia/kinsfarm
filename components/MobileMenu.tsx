@@ -14,16 +14,16 @@ export function MobileMenu() {
       <button
         aria-expanded={open}
         aria-label="Open menu"
-        className="pixel-corners grid h-11 w-11 place-items-center border border-white/45 bg-[#123f68]/80 text-white shadow-panel"
+        className="pixel-corners grid h-11 w-11 place-items-center border border-white/45 bg-[#315d84] text-white shadow-panel"
         type="button"
         onClick={() => setOpen((value) => !value)}
       >
         <span className="pixel-font text-xl">{open ? "×" : "☰"}</span>
       </button>
       {open ? (
-        <div className="fixed inset-0 z-[100] bg-[#05233d]/45 backdrop-blur-sm" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-[100] bg-[#05233d]/65 backdrop-blur-sm" onClick={() => setOpen(false)}>
           <div
-            className="absolute left-3 right-3 top-20 space-y-3 rounded-[1rem] border border-white/45 bg-[#123f68]/95 p-4 text-white shadow-panel"
+            className="absolute left-3 right-3 top-20 space-y-3 rounded-[1rem] border border-white/45 bg-[#123f68] p-4 text-white shadow-panel"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-3 border-b border-white/20 pb-3">
@@ -39,6 +39,7 @@ export function MobileMenu() {
               Dashboard
             </Link>
             <CopyContract compact />
+            <p className="pixel-label text-gold">Connect Wallet</p>
             <WalletConnect />
             <a
               href="https://x.com/kinsmenonsol"
