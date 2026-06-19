@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MobileMenu } from "@/components/MobileMenu";
 import { PixelButton } from "@/components/PixelButton";
 import { WalletConnect } from "@/components/WalletConnect";
@@ -41,7 +42,7 @@ export default function Home() {
       <div className="mx-auto flex max-w-[1500px] flex-col gap-5">
         <header className="kins-header pixel-corners flex flex-row items-center justify-between gap-3 p-3">
           <Link href="/" className="flex min-w-0 items-center gap-3">
-            <span className="coin grid h-12 w-12 shrink-0 place-items-center pixel-font">$</span>
+            <Image className="brand-crest h-12 w-12 shrink-0 rounded-full object-cover" src="/images/kinsclub-logo.jpg" alt="KINSCLUB crest" width={48} height={48} />
             <div className="min-w-0">
               <p className="pixel-title truncate text-3xl font-black">KINSCLUB</p>
               <p className="pixel-label text-white/85">Hold - Earn KINS</p>
@@ -58,7 +59,7 @@ export default function Home() {
               Dashboard
             </Link>
             <a
-              href="https://x.com/kinsmenonsol"
+              href="https://x.com/clubofkintara"
               target="_blank"
               rel="noreferrer"
               aria-label="KINSCLUB on X"
@@ -73,16 +74,16 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="community-hero pixel-corners relative min-h-[410px] overflow-hidden border border-white/35 px-4 py-6 shadow-panel sm:min-h-[calc(100vh-132px)] sm:px-8 sm:py-10 lg:px-12">
-          <div className="relative z-10 flex min-h-[315px] max-w-5xl flex-col justify-start pt-4 sm:min-h-[72vh] sm:justify-center sm:pt-0">
-            <h1 className="pixel-title text-4xl font-black uppercase leading-none sm:text-7xl lg:text-9xl">CLUB OF KINTARA</h1>
-            <p className="mt-4 max-w-4xl text-xl font-black uppercase leading-tight text-white drop-shadow sm:mt-5 sm:text-3xl">
+        <section className="community-hero pixel-corners relative min-h-[440px] overflow-hidden border border-white/35 px-4 py-8 shadow-panel sm:min-h-[560px] sm:px-8 sm:py-10 lg:min-h-[620px] lg:px-12">
+          <div className="relative z-10 flex min-h-[360px] max-w-5xl flex-col justify-center sm:min-h-[470px] lg:min-h-[530px]">
+            <h1 className="pixel-title text-5xl font-black uppercase leading-none sm:text-7xl lg:text-9xl">CLUB OF KINTARA</h1>
+            <p className="mt-5 max-w-4xl text-2xl font-black uppercase leading-tight text-white drop-shadow sm:text-3xl">
               HOLD KINSCLUB. EARN KINS REWARDS. WIN MEMBERSHIPS.
             </p>
-            <p className="mt-3 max-w-2xl text-base font-bold text-white/90 drop-shadow sm:mt-4 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-lg font-bold text-white/90 drop-shadow">
               A premium community rewards platform for Kintara players and supporters.
             </p>
-            <div className="mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <PixelButton href="/dashboard">Get Started</PixelButton>
               <PixelButton href="/dashboard" variant="secondary">Enter Dashboard</PixelButton>
             </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MobileMenu } from "@/components/MobileMenu";
 import { Panel } from "@/components/Panel";
 import { PixelProgress } from "@/components/PixelProgress";
@@ -96,7 +97,7 @@ export default function DashboardPage() {
         <header className="kins-header pixel-corners flex flex-row items-center justify-between gap-3 p-3 md:flex-col md:items-stretch md:gap-4 md:p-4 xl:flex-row xl:items-center">
           <Link href="/" className="flex min-w-0 items-center gap-3">
             <div className="grid h-14 w-14 shrink-0 place-items-center border-2 border-gold bg-black/25 shadow-rune">
-              <div className="coin grid h-9 w-9 place-items-center pixel-font text-sm">$</div>
+              <Image className="brand-crest h-10 w-10 rounded-full object-cover" src="/images/kinsclub-logo.jpg" alt="KINSCLUB crest" width={40} height={40} />
             </div>
             <div className="min-w-0">
               <h1 className="pixel-title truncate text-3xl font-black sm:text-4xl">KINSCLUB</h1>
@@ -123,7 +124,7 @@ export default function DashboardPage() {
 
           <div className="flex shrink-0 items-center justify-end gap-2 md:hidden">
             <a
-              href="https://x.com/kinsmenonsol"
+              href="https://x.com/clubofkintara"
               target="_blank"
               rel="noreferrer"
               aria-label="KINSCLUB on X"
@@ -136,7 +137,7 @@ export default function DashboardPage() {
 
           <div className="hidden flex-col gap-2 md:flex lg:flex-row lg:items-center xl:justify-end">
             <a
-              href="https://x.com/kinsmenonsol"
+              href="https://x.com/clubofkintara"
               target="_blank"
               rel="noreferrer"
               aria-label="KINSCLUB on X"
