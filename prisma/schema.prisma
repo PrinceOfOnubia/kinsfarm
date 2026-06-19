@@ -23,10 +23,14 @@ model Payout {
   wallet    String
   kins      Decimal       @db.Decimal(18, 4)
   cycleId   Int
+  signature String?
+  status    String        @default("PAID")
+  errorMessage String?
   createdAt DateTime      @default(now())
 
   @@index([cycleId])
   @@index([wallet])
+  @@index([status])
 }
 
 model HolderSnapshot {
@@ -39,4 +43,24 @@ model HolderSnapshot {
 
   @@index([rank])
   @@index([wallet])
+}
+
+model RewardCycleRun {
+  id                 String    @id @default(cuid())
+  cycleId            Int
+  status             String
+  dryRun             Boolean   @default(true)
+  claimSignature     String?
+  buySignature       String?
+  transferSignatures String[]  @default([])
+  treasurySol        Decimal?  @db.Decimal(22, 8)
+  kinsDistributed    Decimal?  @db.Decimal(22, 4)
+  recipients         Int       @default(0)
+  errorMessage       String?
+  startedAt          DateTime  @default(now())
+  completedAt        DateTime?
+
+  @@index([cycleId])
+  @@index([status])
+  @@index([startedAt])
 }

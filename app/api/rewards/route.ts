@@ -8,11 +8,17 @@ export async function GET() {
   }
 
   try {
-    const [cycle, holders] = await Promise.all([
+    const [cycle, holders, worker, holderRewards] = await Promise.all([
       prisma.cycleSnapshot.findFirst({
         orderBy: { cycleId: "desc" },
       }),
       prisma.holderSnapshot.findMany({ orderBy: { rank: "asc" }, take: 50 }),
+      prisma.rewardCycleRun.findFirst({ orderBy: { startedAt: "desc" } }),
+      prisma.payout.groupBy({
+        by: ["wallet"],
+        where: { status: "PAID" },
+        _sum: { kins: true },
+      }),
     ]);
 
     if (!cycle) {
@@ -20,6 +26,7 @@ export async function GET() {
     }
 
     const payouts = await prisma.payout.findMany({ orderBy: [{ cycleId: "desc" }, { createdAt: "desc" }], take: 30 });
+    const rewardsByWallet = new Map(holderRewards.map((reward) => [reward.wallet, Number(reward._sum.kins ?? 0)]));
 
     return NextResponse.json({
       source: "database",
@@ -35,6 +42,7 @@ export async function GET() {
           wallet: holder.wallet,
           balance: Number(holder.balance),
           share: Number(holder.share),
+          rewardsEarned: rewardsByWallet.get(holder.wallet) ?? 0,
         })),
         payouts: payouts.map((payout) => ({
           wallet: payout.wallet,
@@ -42,6 +50,19 @@ export async function GET() {
           cycleId: payout.cycleId,
           time: payout.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         })),
+        worker: worker
+          ? {
+              cycleId: worker.cycleId,
+              status: worker.status,
+              dryRun: worker.dryRun,
+              startedAt: worker.startedAt.toISOString(),
+              completedAt: worker.completedAt?.toISOString() ?? null,
+              claimSignature: worker.claimSignature,
+              buySignature: worker.buySignature,
+              transferCount: worker.transferSignatures.length,
+              errorMessage: worker.errorMessage,
+            }
+          : undefined,
       },
     });
   } catch (error) {

@@ -10,6 +10,7 @@ export type HolderRow = {
   wallet: string;
   balance: number;
   share: number;
+  rewardsEarned?: number;
 };
 
 export type CycleSnapshot = {
@@ -21,6 +22,19 @@ export type CycleSnapshot = {
   treasuryBalance: number;
   holders: HolderRow[];
   payouts: PayoutRow[];
+  worker?: WorkerRun;
+};
+
+export type WorkerRun = {
+  cycleId: number;
+  status: string;
+  dryRun: boolean;
+  startedAt: string;
+  completedAt: string | null;
+  claimSignature: string | null;
+  buySignature: string | null;
+  transferCount: number;
+  errorMessage: string | null;
 };
 
 const wallets = [

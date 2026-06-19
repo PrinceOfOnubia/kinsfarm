@@ -23,7 +23,6 @@ import {
 
 const playerBalance = 250_000;
 const sparklinePoints = [22, 26, 25, 31, 29, 36, 33, 39, 48, 46, 52, 56, 66, 64, 71, 69, 78, 96];
-const holderRewards = ["12,450 KINS", "Membership won", "8,940 KINS", "Raffle active", "6,310 KINS", "4,820 KINS"];
 
 export default function DashboardPage() {
   const [snapshot, setSnapshot] = useState(initialSnapshot);
@@ -90,6 +89,8 @@ export default function DashboardPage() {
   const requirementProgress = Math.min(250, (playerBalance / minimumRequirement) * 100);
   const treasuryHealth = Math.min(100, Math.max(34, (snapshot.treasuryBalance / 1_500_000) * 100));
   const estimatedPayout = (playerBalance / 1_000_000) * snapshot.averagePayout * 9.25;
+  const workerStatus = snapshot.worker?.status ?? "ACTIVE";
+  const workerMode = snapshot.worker?.dryRun ? "DRY RUN" : "LIVE";
 
   return (
     <main className="pixel-screen min-h-screen px-3 py-4 sm:px-5 lg:px-6">
@@ -223,12 +224,16 @@ export default function DashboardPage() {
 
               <Panel title="System Status" icon="✚">
                 <div className="pixel-corners mb-4 border border-grass/45 bg-grass/10 p-4">
-                  <p className="pixel-font text-2xl text-grass">● ACTIVE</p>
-                  <p className="text-sm text-white/60">All reward engine channels operational</p>
+                  <p className="pixel-font text-2xl text-grass">● {workerStatus}</p>
+                  <p className="text-sm text-white/60">
+                    {snapshot.worker ? `Reward worker synced in ${workerMode} mode` : "All reward engine channels operational"}
+                  </p>
                 </div>
                 <div className="space-y-3">
                   <StatusLine label="Treasury Balance" value={`${formatNumber(snapshot.treasuryBalance, 2)} KINS`} />
                   <StatusLine label="Next Cycle Timer" value={formatTimer(secondsLeft)} />
+                  <StatusLine label="Worker Mode" value={workerMode} />
+                  <StatusLine label="Transfer Batches" value={`${snapshot.worker?.transferCount ?? 0}`} />
                   <div>
                     <div className="mb-2 flex justify-between">
                       <span className="pixel-label text-white/60">Treasury HP</span>
@@ -286,7 +291,7 @@ export default function DashboardPage() {
               <span className="pixel-corners border border-gold/30 bg-black/25 px-2 py-1 pixel-label text-white/45">Scroll</span>
             </div>
             <div className="max-h-[42rem] space-y-2 overflow-y-auto pr-1">
-              {snapshot.holders.map((holder, index) => (
+              {snapshot.holders.map((holder) => (
                 <div key={holder.wallet} className="inventory-row pixel-corners grid grid-cols-[2.2rem_1fr] gap-2 p-3">
                   <span className="pixel-font text-gold">{holder.rank <= 3 ? "♛" : `#${holder.rank}`}</span>
                   <div className="min-w-0">
@@ -295,7 +300,9 @@ export default function DashboardPage() {
                       <span className="pixel-label text-grass">{holder.share.toFixed(2)}%</span>
                     </div>
                     <p className="truncate text-sm text-white/60">{formatNumber(holder.balance)} KINSCLUB</p>
-                    <p className="truncate text-sm font-bold text-gold">{holderRewards[index % holderRewards.length]}</p>
+                    <p className="truncate text-sm font-bold text-gold">
+                      {formatNumber(holder.rewardsEarned ?? 0, 2)} KINS earned
+                    </p>
                   </div>
                 </div>
               ))}
