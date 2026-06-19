@@ -1,7 +1,10 @@
-if (process.env.WORKER_ENABLED !== "true") {
-  console.log("KINSCLUB reward worker is installed but disabled. Set WORKER_ENABLED=true after configuring live env vars.");
-  setInterval(() => undefined, 60 * 60 * 1000);
-} else {
+async function main() {
+  if (process.env.WORKER_ENABLED !== "true") {
+    console.log("KINSCLUB reward worker is installed but disabled. Set WORKER_ENABLED=true after configuring live env vars.");
+    setInterval(() => undefined, 60 * 60 * 1000);
+    return;
+  }
+
   const { runCycle } = await import("./cycle");
   const { workerConfig } = await import("../lib/solana/config");
 
@@ -29,4 +32,4 @@ if (process.env.WORKER_ENABLED !== "true") {
   setInterval(tick, workerConfig.cycleDurationSeconds * 1000);
 }
 
-export {};
+void main();
