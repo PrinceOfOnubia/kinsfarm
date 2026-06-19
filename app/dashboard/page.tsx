@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { CopyContract } from "@/components/CopyContract";
 import { MobileMenu } from "@/components/MobileMenu";
 import { Panel } from "@/components/Panel";
 import { PixelProgress } from "@/components/PixelProgress";
@@ -23,6 +22,7 @@ import {
 
 const playerBalance = 250_000;
 const sparklinePoints = [22, 26, 25, 31, 29, 36, 33, 39, 48, 46, 52, 56, 66, 64, 71, 69, 78, 96];
+const holderRewards = ["12,450 KINS", "Membership won", "8,940 KINS", "Raffle active", "6,310 KINS", "4,820 KINS"];
 
 export default function DashboardPage() {
   const [snapshot, setSnapshot] = useState(initialSnapshot);
@@ -135,7 +135,6 @@ export default function DashboardPage() {
           </div>
 
           <div className="hidden flex-col gap-2 md:flex lg:flex-row lg:items-center xl:justify-end">
-            <CopyContract compact />
             <a
               href="https://x.com/kinsmenonsol"
               target="_blank"
@@ -207,14 +206,16 @@ export default function DashboardPage() {
             </section>
 
             <section className="grid gap-4 lg:grid-cols-3">
-              <Panel title="Your Status" icon="☻">
+              <Panel title="Your Profile" icon="☻">
                 <div className="space-y-3">
                   <StatusLine label="KINSCLUB Balance" value={formatNumber(playerBalance)} />
-                  <StatusLine label="Your Weight" value="500.00" />
+                  <StatusLine label="Eligibility Need" value={`${formatNumber(minimumRequirement)} KINSCLUB`} />
+                  <StatusLine label="KINS Earned" value="3,420.75 KINS" />
+                  <StatusLine label="Raffle Entries" value={eligible ? "Active" : "Locked"} />
                   <StatusLine label="Est. Next Payout" value={`${formatNumber(estimatedPayout, 2)} KINS`} />
                   <div className={`pixel-corners border p-3 ${eligible ? "border-grass/50 bg-grass/10" : "border-red-500/50 bg-red-500/10"}`}>
                     <p className={`pixel-label ${eligible ? "text-grass" : "text-red-400"}`}>{eligible ? "ELIGIBLE" : "NOT ELIGIBLE"}</p>
-                    <p className="text-sm text-white/60">{eligible ? "You are earning rewards" : "Add more KINSCLUB to qualify"}</p>
+                    <p className="text-sm text-white/60">{eligible ? "You are eligible for KINS rewards and raffles" : "Hold 500,000 KINSCLUB to qualify for KINS rewards and raffles"}</p>
                   </div>
                 </div>
               </Panel>
@@ -284,7 +285,7 @@ export default function DashboardPage() {
               <span className="pixel-corners border border-gold/30 bg-black/25 px-2 py-1 pixel-label text-white/45">Scroll</span>
             </div>
             <div className="max-h-[42rem] space-y-2 overflow-y-auto pr-1">
-              {snapshot.holders.map((holder) => (
+              {snapshot.holders.map((holder, index) => (
                 <div key={holder.wallet} className="inventory-row pixel-corners grid grid-cols-[2.2rem_1fr] gap-2 p-3">
                   <span className="pixel-font text-gold">{holder.rank <= 3 ? "♛" : `#${holder.rank}`}</span>
                   <div className="min-w-0">
@@ -293,6 +294,7 @@ export default function DashboardPage() {
                       <span className="pixel-label text-grass">{holder.share.toFixed(2)}%</span>
                     </div>
                     <p className="truncate text-sm text-white/60">{formatNumber(holder.balance)} KINSCLUB</p>
+                    <p className="truncate text-sm font-bold text-gold">{holderRewards[index % holderRewards.length]}</p>
                   </div>
                 </div>
               ))}

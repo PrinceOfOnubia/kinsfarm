@@ -217,7 +217,7 @@ input {
 
 .community-hero {
   background:
-    linear-gradient(90deg, rgba(5, 35, 61, 0.96) 0%, rgba(5, 35, 61, 0.74) 50%, rgba(5, 35, 61, 0.48) 100%),
+    linear-gradient(90deg, rgba(5, 35, 61, 0.88) 0%, rgba(5, 35, 61, 0.6) 50%, rgba(5, 35, 61, 0.24) 100%),
     url("/images/kinsmen-map-background.jpg") center / cover;
 }
 
@@ -265,15 +265,15 @@ input {
   border: 2px solid rgba(255, 196, 91, 0.72) !important;
   border-radius: 0 !important;
   position: relative !important;
-  z-index: 1002 !important;
+  z-index: 2147483646 !important;
 }
 
 .wallet-adapter-modal {
-  z-index: 1000 !important;
+  z-index: 2147483645 !important;
 }
 
 .wallet-adapter-modal-overlay {
-  z-index: 999 !important;
+  z-index: 2147483644 !important;
 }
 
 .wallet-adapter-modal-title,

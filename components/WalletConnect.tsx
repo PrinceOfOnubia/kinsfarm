@@ -51,12 +51,12 @@ export function WalletConnect() {
           <>
             <button
               aria-label="Close wallet menu"
-              className="fixed inset-0 z-[900]"
+              className="fixed inset-0 z-[2147483642]"
               type="button"
               onClick={() => setOpen(false)}
             />
             <div
-              className="fixed z-[950] w-[min(18rem,calc(100vw-1.5rem))] space-y-2 rounded-[1rem] border border-white/40 bg-[#123f68] p-3 text-white shadow-panel"
+              className="fixed z-[2147483643] w-[min(18rem,calc(100vw-1.5rem))] space-y-2 rounded-[1rem] border border-white/40 bg-[#123f68] p-3 text-white shadow-panel"
               style={{ right: menuPosition.right, top: menuPosition.top }}
             >
               <div className="pixel-corners border border-gold/35 bg-white/15 p-3">

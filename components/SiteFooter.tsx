@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CopyContract } from "@/components/CopyContract";
 import { XIcon } from "@/components/XIcon";
 
 export function SiteFooter() {
@@ -11,7 +10,6 @@ export function SiteFooter() {
           <span className="pixel-title text-xl font-black">KINSCLUB</span>
         </Link>
         <p className="pixel-label text-gold">Hold KINSCLUB. Earn KINS. Win memberships.</p>
-        <CopyContract compact />
         <a
           href="https://x.com/kinsmenonsol"
           target="_blank"

@@ -2,9 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CopyContract } from "@/components/CopyContract";
+import { createPortal } from "react-dom";
 import { WalletConnect } from "@/components/WalletConnect";
 import { XIcon } from "@/components/XIcon";
+
+const menuLinks = [
+  ["Home", "/"],
+  ["How It Works", "/#how-it-works"],
+  ["Rewards", "/#rewards"],
+  ["Leaderboard", "/#leaderboard"],
+  ["About", "/#about"],
+  ["Dashboard", "/dashboard"],
+];
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -20,10 +29,10 @@ export function MobileMenu() {
       >
         <span className="pixel-font text-xl">{open ? "×" : "☰"}</span>
       </button>
-      {open ? (
-        <div className="fixed inset-0 z-[980] bg-[#05233d]/65 backdrop-blur-sm" onClick={() => setOpen(false)}>
+      {open && typeof document !== "undefined" ? createPortal(
+        <div className="fixed inset-0 z-[2147483640] bg-[#05233d]/75 backdrop-blur-sm" onClick={() => setOpen(false)}>
           <div
-            className="absolute left-3 right-3 top-20 space-y-3 rounded-[1rem] border border-white/45 bg-[#123f68] p-4 text-white shadow-panel"
+            className="fixed left-3 right-3 top-20 max-h-[calc(100vh-6rem)] space-y-3 overflow-y-auto rounded-[1rem] border border-white/45 bg-[#123f68] p-4 text-white shadow-panel"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-3 border-b border-white/20 pb-3">
@@ -32,13 +41,11 @@ export function MobileMenu() {
                 Close
               </button>
             </div>
-            <Link className="pixel-corners block border border-white/25 bg-white/15 px-3 py-3 pixel-label" href="/" onClick={() => setOpen(false)}>
-              Home
-            </Link>
-            <Link className="pixel-corners block border border-white/25 bg-white/15 px-3 py-3 pixel-label" href="/dashboard" onClick={() => setOpen(false)}>
-              Dashboard
-            </Link>
-            <CopyContract compact />
+            {menuLinks.map(([label, href]) => (
+              <Link key={href} className="pixel-corners block border border-white/25 bg-white/15 px-3 py-3 pixel-label" href={href} onClick={() => setOpen(false)}>
+                {label}
+              </Link>
+            ))}
             <p className="pixel-label text-gold">Connect Wallet</p>
             <WalletConnect />
             <a
@@ -52,7 +59,8 @@ export function MobileMenu() {
               <span>X</span>
             </a>
           </div>
-        </div>
+        </div>,
+        document.body
       ) : null}
     </div>
   );
