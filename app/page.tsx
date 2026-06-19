@@ -73,16 +73,16 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="community-hero pixel-corners relative min-h-[calc(100vh-132px)] overflow-hidden border border-white/35 px-4 py-10 shadow-panel sm:px-8 lg:px-12">
-          <div className="relative z-10 flex min-h-[72vh] max-w-5xl flex-col justify-center">
-            <h1 className="pixel-title text-5xl font-black uppercase leading-none sm:text-7xl lg:text-9xl">CLUB OF KINTARA</h1>
-            <p className="mt-5 max-w-4xl text-2xl font-black uppercase leading-tight text-white drop-shadow sm:text-3xl">
+        <section className="community-hero pixel-corners relative min-h-[410px] overflow-hidden border border-white/35 px-4 py-6 shadow-panel sm:min-h-[calc(100vh-132px)] sm:px-8 sm:py-10 lg:px-12">
+          <div className="relative z-10 flex min-h-[315px] max-w-5xl flex-col justify-start pt-4 sm:min-h-[72vh] sm:justify-center sm:pt-0">
+            <h1 className="pixel-title text-4xl font-black uppercase leading-none sm:text-7xl lg:text-9xl">CLUB OF KINTARA</h1>
+            <p className="mt-4 max-w-4xl text-xl font-black uppercase leading-tight text-white drop-shadow sm:mt-5 sm:text-3xl">
               HOLD KINSCLUB. EARN KINS REWARDS. WIN MEMBERSHIPS.
             </p>
-            <p className="mt-4 max-w-2xl text-lg font-bold text-white/90 drop-shadow">
+            <p className="mt-3 max-w-2xl text-base font-bold text-white/90 drop-shadow sm:mt-4 sm:text-lg">
               A premium community rewards platform for Kintara players and supporters.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <PixelButton href="/dashboard">Get Started</PixelButton>
               <PixelButton href="/dashboard" variant="secondary">Enter Dashboard</PixelButton>
             </div>

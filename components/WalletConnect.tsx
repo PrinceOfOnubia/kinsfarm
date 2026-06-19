@@ -7,7 +7,12 @@ import { createPortal } from "react-dom";
 import { PixelButton } from "@/components/PixelButton";
 import { truncateWallet } from "@/lib/rewardEngine";
 
-export function WalletConnect() {
+type WalletConnectProps = {
+  className?: string;
+  variant?: "gold" | "green" | "secondary";
+};
+
+export function WalletConnect({ className = "", variant = "green" }: WalletConnectProps) {
   const { connected, connecting, disconnect, publicKey, wallet } = useWallet();
   const { setVisible } = useWalletModal();
   const [open, setOpen] = useState(false);
@@ -44,7 +49,7 @@ export function WalletConnect() {
   if (connected && address) {
     return (
       <div ref={buttonRef} className="relative">
-        <PixelButton className="w-full" onClick={() => setOpen((value) => !value)} type="button">
+        <PixelButton className={`w-full ${className}`} onClick={() => setOpen((value) => !value)} type="button">
           {truncateWallet(address)}
         </PixelButton>
         {open && typeof document !== "undefined" ? createPortal(
@@ -92,7 +97,7 @@ export function WalletConnect() {
   }
 
   return (
-    <PixelButton variant="green" onClick={() => setVisible(true)} type="button">
+    <PixelButton className={className} variant={variant} onClick={() => setVisible(true)} type="button">
       {connecting ? "Connecting" : "Connect Wallet"}
     </PixelButton>
   );

@@ -4,15 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { WalletConnect } from "@/components/WalletConnect";
-import { XIcon } from "@/components/XIcon";
 
 const menuLinks = [
-  ["Home", "/"],
-  ["How It Works", "/#how-it-works"],
-  ["Rewards", "/#rewards"],
-  ["Leaderboard", "/#leaderboard"],
-  ["About", "/#about"],
   ["Dashboard", "/dashboard"],
+  ["Leaderboard", "/#leaderboard"],
 ];
 
 export function MobileMenu() {
@@ -46,18 +41,7 @@ export function MobileMenu() {
                 {label}
               </Link>
             ))}
-            <p className="pixel-label text-gold">Connect Wallet</p>
-            <WalletConnect />
-            <a
-              href="https://x.com/kinsmenonsol"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="KINSCLUB on X"
-              className="pixel-corners flex items-center justify-center gap-2 border border-white/35 bg-white/15 px-3 py-3 pixel-label"
-            >
-              <XIcon />
-              <span>X</span>
-            </a>
+            <WalletConnect className="w-full border-white/35 bg-[#315d84] text-white hover:bg-gold hover:text-[#52320b]" variant="secondary" />
           </div>
         </div>,
         document.body
