@@ -1,4 +1,5 @@
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
+import bs58 from "bs58";
 
 function requiredEnv(name: string) {
   const value = process.env[name];
@@ -38,9 +39,25 @@ function parsePrivateKey(value: string) {
       throw new Error("invalid array");
     }
     return Uint8Array.from(parsed);
-  } catch {
-    throw new Error("TREASURY_SECRET_KEY must be a Solana private key byte array, for example [1,2,...,64]");
+  } catch {}
+
+  if (/^\d+(,\d+){63}$/.test(trimmed)) {
+    const parsed = trimmed.split(",").map((item) => Number(item));
+    if (parsed.every((item) => Number.isInteger(item) && item >= 0 && item <= 255)) {
+      return Uint8Array.from(parsed);
+    }
   }
+
+  try {
+    const decoded = bs58.decode(trimmed);
+    if (decoded.length === 64) {
+      return decoded;
+    }
+  } catch {}
+
+  throw new Error(
+    "TREASURY_SECRET_KEY must be a Solana private key: base58 secret key, [1,2,...,64], or 64 comma-separated bytes",
+  );
 }
 
 export const connection = new Connection(requiredEnv("SOLANA_RPC_URL"), "confirmed");

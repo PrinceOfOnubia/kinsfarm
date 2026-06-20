@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MobileMenu } from "@/components/MobileMenu";
+import { CopyAddressBadge } from "@/components/CopyAddressBadge";
 import { PixelButton } from "@/components/PixelButton";
 import { WalletConnect } from "@/components/WalletConnect";
 import { XIcon } from "@/components/XIcon";
@@ -86,6 +87,9 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <PixelButton href="/dashboard">Get Started</PixelButton>
               <PixelButton href="/dashboard" variant="secondary">Enter Dashboard</PixelButton>
+            </div>
+            <div className="mt-5">
+              <CopyAddressBadge value="KINSCLUB_CA_PENDING" display="Pending" />
             </div>
           </div>
         </section>
