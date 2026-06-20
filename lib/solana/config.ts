@@ -55,9 +55,7 @@ function parsePrivateKey(value: string) {
     }
   } catch {}
 
-  throw new Error(
-    "TREASURY_SECRET_KEY must be a Solana private key: base58 secret key, [1,2,...,64], or 64 comma-separated bytes",
-  );
+  throw new Error("TREASURY_SECRET_KEY must be a Solana private key directly: base58 secret key, [1,2,...,64], or 64 comma-separated bytes");
 }
 
 export const connection = new Connection(requiredEnv("SOLANA_RPC_URL"), "confirmed");

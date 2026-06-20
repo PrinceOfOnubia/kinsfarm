@@ -38,6 +38,9 @@ const leaderboard = [
 ];
 
 export default function Home() {
+  const contractAddress = process.env.NEXT_PUBLIC_KINSCLUB_CA ?? "KINSCLUB_CA_PENDING";
+  const contractDisplay = process.env.NEXT_PUBLIC_KINSCLUB_CA ? contractAddress : "TBA";
+
   return (
     <main className="pixel-screen min-h-screen px-3 py-4 sm:px-5 lg:px-6">
       <div className="mx-auto flex max-w-[1500px] flex-col gap-5">
@@ -89,7 +92,7 @@ export default function Home() {
               <PixelButton href="/dashboard" variant="secondary">Enter Dashboard</PixelButton>
             </div>
             <div className="mt-5">
-              <CopyAddressBadge value="KINSCLUB_CA_PENDING" display="Pending" />
+              <CopyAddressBadge value={contractAddress} display={contractDisplay} className="max-w-[min(100%,24rem)]" />
             </div>
           </div>
         </section>
